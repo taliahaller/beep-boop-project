@@ -2,7 +2,7 @@
 
 var beepBoop = [];
 
-function Calculate(userNumber){
+function CalculateBeepBoop(userNumber){
   beepBoop = [];
   for(var i = 0; i < userNumber + 1; i++){
    var examineNumber = i;
@@ -18,31 +18,30 @@ function Calculate(userNumber){
  };
 }
 
-
 // USER INTERFACE LOGIC
 $(document).ready(function() {
 
-  $("#formOne").submit(function() {
+  function MyFunction (){
     event.preventDefault();
     $(".magicText").hide();
     $(".well").show();
     var userNumber = parseInt($("input#inputNumber").val());
-    Calculate(userNumber);
+    CalculateBeepBoop(userNumber);
+  }
+
+  $("#formOne").submit(function() {
+    MyFunction();
     beepBoop = beepBoop.join(", ");
     $("#nameForMessage").text($("input#inputName").val());
     $("#answer").text(beepBoop + ".");
   }); // (#formOne).submit close
 
   $("#reverseButton").click(function() {
-    event.preventDefault();
-    $(".magicText").hide();
-    $(".well").show();
-    var userNumber = parseInt($("input#inputNumber").val());
-    Calculate(userNumber);
+    MyFunction();
     var beepBoopReversed = beepBoop.reverse();
     beepBoopReversed = beepBoopReversed.join(", ");
     $("#nameForMessage").text($("input#inputName").val());
     $("#answer").text(beepBoopReversed + ".");
-    
+
   }); // (#reverseButton).click close
 }); // (document).ready close
